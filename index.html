@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pickle Company Web Design</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fffdf7;
+      color: #2b3e2e;
+      background: #f0efe7;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      background: #f0efe7;
+    }
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      background: #2b3e2e;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .hero-image {
+      max-width: 40%;
+    }
+     .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .products {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .products h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .product {
+      background: #f9f9f4;
+      border-radius: 10px;
+      padding: 1rem;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .product:hover{
+        transform: translateY(-20px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .product-name {
+      margin-top: 0.8rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text, .hero-image {
+        max-width: 100%;
+      }
+
+      .slideshow-container{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div>
+    <img src="./images/logo.png" width="100px" alt="">
+</div>
+  <header>
+    <div class="hero-text">
+      <h1>LoEl</h1>
+      <p class="subtitle">Kompania "Lo El" si aktivitet kryesor ka kultivimin, përpunimin dhe konzervimin e perimeve</p>
+      <a href="#" class="btn">Blej Tani</a>
+    </div>
+    <div class="hero-image slideshow-container">
+      <img src="./images/somborke.jpg" class="slide active" alt="Pickle jars">
+      <img src="./images/domate.jpg" class="slide" alt="Pickle jars">
+         <img src="./images/ajvar.jpg" class="slide" alt="Pickle jars">
+            <img src="./images/zharran.jpg" class="slide" alt="Pickle jars">
+
+    </div>
+  </header>
+
+  <section class="products">
+    <h2>Produktet tona</h2>
+    <div class="product-grid">
+      <div class="product">
+        <a href="./somborka.html"><img src="./images/produkte/somborke.jpg" alt="Pickles"></a>
+        <div class="product-name">Somborke</div>
+      </div>
+      <div class="product">
+        <img src="./images/produkte/ajvar.jpg" alt="Pickled Beets">
+        <div class="product-name">Pickled Beets</div>
+      </div>
+      <div class="product">
+        <img src="./images/produkte/domateEverdh.jpg" alt="Pepper Relish">
+        <div class="product-name">Pepper Relish</div>
+      </div>
+    </div>
+  </section>
+
+   <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3000); // change every 3 seconds
+
+     const dbUrl = "https://loel-781a1-default-rtdb.europe-west1.firebasedatabase.app";
+     
+
+  // Marrim të dhënat nga databaza dhe i shfaqim në console
+  fetch(`${dbUrl}/.json`)
+    .then(res => res.json())
+    .then(data => {
+      console.log("Te dhenat nga Firebase:", data);
+    });
+
+    
+  </script>
+</body>
+</html>

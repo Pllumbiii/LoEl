@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Display</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      width: 95vw;
+      height: 94vh;
+    }
+
+    .product-container {
+      display: flex;
+      max-width: 1000px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: auto;
+    }
+
+    .product-images {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .product-images img.main-img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 4px;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 10px;
+    }
+
+    .thumbnails img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border: 2px solid #ccc;
+      cursor: pointer;
+    }
+
+    .product-details {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .product-details h2 {
+      margin: 0 0 10px;
+    }
+
+    .price {
+      color: #e74c3c;
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #888;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    .discount {
+      color: green;
+      font-size: 14px;
+    }
+
+    .buy-options {
+      margin: 20px 0;
+    }
+
+    .buy-button {
+    background: #2b3e2e;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .buy-button:hover {
+     background: #203223;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="product-container">
+  <div class="product-images">
+    <img src="./images/produkte/somborke.jpg" alt="Main" class="main-img">
+    <div class="thumbnails">
+      <img src="./images/produkte/somborke.jpg" alt="Thumb1">
+      <img src="./images/produkte/somborkeDjegs.jpg" alt="Thumb2">
+      <img src="./images/somborke.jpg" alt="Thumb3">
+    </div>
+  </div>
+
+  <div class="product-details">
+    <h2>Somborkë</h2>
+    <p class="price">5€<span class="old-price">7€</span></p>
+
+    <div class="buy-options">
+      <label for="quantity">Sasia: </label>
+      <input type="number" id="quantity" value="1" min="1" style="width: 50px;">
+    </div>
+
+    <button class="buy-button">BLEJ TANI</button>
+  </div>
+</div>
+
+
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1RO4XsB7IwDieakNnCkjkcwm"
+  publishable-key="pk_test_51RO4VXB7IwDieakNTHVaem4qzjSN72vXgCo4jw17jj8e6qfNua25DSf4ueksGgZoEtQL0CazvinK0By2ZwJhqBKs004rqGdDHv"
+>
+</stripe-buy-button>
+</body>
+</html>
